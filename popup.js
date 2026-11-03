@@ -46,7 +46,12 @@ document.addEventListener('DOMContentLoaded', function() {
           return;
         }
 
-        if (response && response.total > 0) {
+        if (response && response.profilePage) {
+          statsContainer.style.display = 'none';
+          if (!keepStatus) {
+            showStatus('На сторінках вашого профілю куплені ігри не приховуються', 'info');
+          }
+        } else if (response && response.total > 0) {
           statsContainer.style.display = 'block';
           statsCount.textContent = response.hidden;
 

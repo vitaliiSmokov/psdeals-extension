@@ -93,9 +93,12 @@ function observePageChanges() {
 // Слухаємо повідомлення від popup
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'getStats') {
+    // Рахуємо лише ігри в картках сітки — на сторінках профілю (/user/...)
+    // ігри показані списком і не приховуються
     const hiddenCount = document.querySelectorAll('.psdeals-hidden').length;
-    const totalOwned = document.querySelectorAll('.icon-purchaseslist.active').length;
+    const totalOwned = document.querySelectorAll('.game-collection-item .icon-purchaseslist.active').length;
     sendResponse({
+      profilePage: window.location.pathname.startsWith('/user/'),
       enabled: isEnabled,
       hidden: hiddenCount,
       total: totalOwned
