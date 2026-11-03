@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "PSDeals - Приховати куплені ігри",
+  "version": "1.0",
+  "description": "Приховує вже куплені ігри на PSDeals",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://psdeals.net/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://psdeals.net/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
